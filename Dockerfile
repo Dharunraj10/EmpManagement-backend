@@ -1,5 +1,5 @@
-# Use an official Maven image to build the project (use a different version)
-FROM maven:3.8.6-openjdk-17 AS build
+# Use a Maven image with OpenJDK 17
+FROM maven:3.8.6-openjdk-17-slim AS build
 
 # Set the working directory
 WORKDIR /app
@@ -12,7 +12,7 @@ COPY src /app/src
 RUN mvn clean install -DskipTests
 
 # Use an official OpenJDK runtime image to run the application
-FROM openjdk:17-slim
+FROM openjdk:17-jdk-slim
 
 # Set the working directory
 WORKDIR /app
